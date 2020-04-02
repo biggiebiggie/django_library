@@ -51,6 +51,16 @@ def request_password_reset(request):
 
     return render(request, 'login_app/request_password_reset.html')
 
+def change_password(request):
+    if request.method == "POST":
+        user = User.objects.get(id=request.user.id)
+        password = request.POST['password']
+        user.set_password(password)
+        user.save()
+        return HttpResponseRedirect(reverse('login_app:logout'))
+    return render(request, 'login_app/change_password.html')
+
+
 
 def password_reset(request):
     if request.method == "POST":

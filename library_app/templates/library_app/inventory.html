@@ -9,6 +9,8 @@
     <h1>Inventory</h1>
     <a href="{% url 'library_app:index' %}">See library</a>
     <a href="{% url 'login_app:logout' %}">Logout</a>
+    <a href="{% url 'login_app:change_password' %}">Change password</a>
+    <a href="{% url 'login_app:delete_account' %}">Delete account</a>
     
     <hr />
     <h2>Books: {{book_counter}}</h2>

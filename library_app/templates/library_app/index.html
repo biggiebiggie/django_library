@@ -13,6 +13,8 @@
     <a href="{% url 'library_app:inventory' %}">Inventory</a>
     {% if user.is_staff %}<a href="{% url 'library_app:list_of_checkouts' %}">List of Checkouts</a>{% endif %}
     <a href="{% url 'login_app:logout' %}">Logout</a>
+    <a href="{% url 'login_app:change_password' %}">Change password</a>
+    <a href="{% url 'login_app:delete_account' %}">Delete account</a>
 
 
     <h3>    
