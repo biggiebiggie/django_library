@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Checkouts</title>
+</head>
+<body>
+    <h1>List of Checkouts</h1>
+    <a href="{% url 'library_app:add_book' %}">Add book</a>
+    <a href="{% url 'library_app:inventory' %}">Inventory</a>
+
+
+    <hr />
+    <h2>Books:</h2>
+    <div>
+    {% for book in books %}
+    <hr />
+        <div>Title: {{book.title}}</div>
+        <div>Author: {{book.author}}</div>    
+        <div>Description: {{book.description}}</div>
+        <div>Description: {{book.user}}</div>
+
+    <hr />
+    {% endfor %}
+    </div>
+    <hr />
+
+    <h2>Magazines:</h2>
+    <div>
+    {% for magazine in magazines %}
+    <hr />
+        <div>Title: {{magazine.title}}</div>
+        <div>Description {{magazine.description}}</div>
+    <hr />
+    {% endfor %}
+    <div>  
+    <hr />
+</body>
+</html>

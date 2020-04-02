@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All books and magazines</title>
+</head>
+<body>
+    <h1>Library - books and magazines</h1>
+    <h2>Welcome {{user.username}}</h2>
+    {% if user.is_staff %}<a href="{% url 'library_app:add_book' %}">Add book</a>{% endif %}
+    {% if user.is_staff %}<a href="{% url 'library_app:add_magazine' %}">Add magazine</a>{% endif %}
+    <a href="{% url 'library_app:inventory' %}">Inventory</a>
+    {% if user.is_staff %}<a href="{% url 'library_app:list_of_checkouts' %}">List of Checkouts</a>{% endif %}
+    <a href="{% url 'login_app:logout' %}">Logout</a>
+
+
+    <h3>    
+        {% if error %}
+            {{ error }}
+        {% endif %}
+    </h3>
+    <hr />
+
+    <h2>Books: {{book_counter}}</h2>
+    
+    <div>
+    {% for book in books %}
+    <hr />
+        <div>Title: {{book.title}}</div>
+        <div>Author: {{book.author}}</div>    
+        <div>Description: {{book.description}}</div>
+
+        <form action="{% url 'library_app:loan_book' %}" method="POST">
+            {% csrf_token %}
+            <button>Loan</button>
+            {% if user.is_staff %}<button formaction="{% url 'library_app:delete_book' %}">Delete</button>{% endif %}
+            <input type="hidden" name="pk" value="{{ book.pk }}">
+        </form>
+
+        
+
+    <hr />
+    {% endfor %}
+    </div>
+    <hr />
+
+    <h2>Magazines: {{magazine_counter}}</h2>
+    <div>
+    {% for magazine in magazines %}
+    <hr />
+        <div>Title: {{magazine.title}}</div>
+        <div>Description {{magazine.description}}</div>
+
+        <form action="{% url 'library_app:loan_magazine' %}" method="POST">
+            {% csrf_token %}
+            <button>Loan</button>
+            {% if user.is_staff %}<button formaction="{% url 'library_app:delete_magazine' %}">Delete</button>{% endif %}
+            <input type="hidden" name="pk" value="{{ magazine.pk }}">
+        </form>
+    <hr />
+    {% endfor %}
+    <div>  
+    <hr />
+</body>
+</html>

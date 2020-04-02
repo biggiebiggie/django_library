@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+    <h1>Inventory</h1>
+    <a href="{% url 'library_app:index' %}">See library</a>
+    <a href="{% url 'login_app:logout' %}">Logout</a>
+    
+    <hr />
+    <h2>Books: {{book_counter}}</h2>
+    <div>
+    {% for book in books %}
+    <hr />
+        <div>Title: {{book.title}}</div>
+        <div>Author: {{book.author}}</div>    
+        <div>Description: {{book.description}}</div>
+
+        <form action="{% url 'library_app:return_book' %}" method="POST">
+            {% csrf_token %}
+            <button>Return</button>
+            <input type="hidden" name="pk" value="{{ book.pk }}">
+        </form>
+
+    <hr />
+    {% endfor %}
+    </div>
+    <hr />
+
+    <h2>Magazines: {{magazine_counter}}</h2>
+    <div>
+    {% for magazine in magazines %}
+    <hr />
+        <div>Title: {{magazine.title}}</div>
+        <div>Description {{magazine.description}}</div>
+
+        <form action="{% url 'library_app:return_magazine' %}" method="POST">
+            {% csrf_token %}
+            <button>Return</button>
+            <input type="hidden" name="pk" value="{{ magazine.pk }}">
+        </form>
+    <hr />
+    {% endfor %}
+    <div>  
+    <hr />
+</body>
+</html>

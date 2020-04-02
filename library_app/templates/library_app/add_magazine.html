@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Magazine</title>
+</head>
+<body>
+    <h1>Add magazine</h1>
+    <div>
+        <form action="{% url 'library_app:add_magazine' %}" method="POST">
+            {% csrf_token %}
+            <input name="title" type="text" placeholder="Title...">
+            <input name="description" type="text" placeholder="Description...">
+            <button>Add magazine</button>
+        </form>
+    </div>
+</body>
+</html>
